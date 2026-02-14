@@ -10,7 +10,10 @@
   },
   "dependencies": {
     "next": "16.1.6",
+<<<<<<< HEAD
     "prisma": "^7.4.0",
+=======
+>>>>>>> 9a772071db0264fda1118ba935fc074763deee2f
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
