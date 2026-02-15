@@ -5,13 +5,15 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
+  // This must match the import path in your config file
+  output   = "../src/app/generated/prisma/client" 
 }
 
 datasource db {
   provider = "postgresql"
 }
+
 
 model User {
   id Int @id @default(autoincrement())

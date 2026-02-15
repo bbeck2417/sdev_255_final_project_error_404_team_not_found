@@ -14,9 +14,6 @@ const nextConfig = {
   basePath: isProd ? `/${repo}` : "",
   assetPrefix: isProd ? `/${repo}/` : "",
 
-  // 4. Required for GitHub Pages static export
-  output: "export",
-
   // 5. Disable server-side image optimization
   images: {
     unoptimized: true,

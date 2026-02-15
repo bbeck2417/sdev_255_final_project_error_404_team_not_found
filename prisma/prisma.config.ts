@@ -1,5 +1,8 @@
-import { PrismaClient } from "@src/app/generated/prisma/client"
+import { defineConfig } from "@prisma/config";
 
-export const prisma = new PrismaClient({
-    adapter: process.env.DATABASE_URL
+export default defineConfig({
+  datasource: {
+    // This connects the CLI (npx prisma migrate) to Supabase
+    url: process.env.DATABASE_URL,
+  },
 });
