@@ -15,21 +15,21 @@ export default function Home() {
   // };
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen p-4 bg-slate-900 text-white">
-      <h1 className="text-2xl font-bold mb-6 text-yellow-400">
+    <main className="flex flex-col items-center justify-start min-h-screen p-4 pt-24 text-white font-wolverine">
+      <h1 className="text-2xl font-bold mb-6 text-yellow-400 font-wolverine">
         Course Management - Xavier&apos;s School for the Gifted
       </h1>
 
-      <h2 className="text-xl mb-4 text-yellow-400">Add a Course</h2>
+      <h2 className="text-xl mb-4 text-yellow-400 pt-24">Add a Course</h2>
       <div className="w-full max-w-md">
         <form className="flex flex-col gap-4">
           <label className="text-sm font-semibold text-yellow-400">
             Course Name:
           </label>
           <input
-            name="className"
+            name="nameOfClass"
             placeholder="e.g., Mind Reading"
-            className="border border-yellow-400 p-2 rounded text-xl text-yellow-400"
+            className="border border-yellow-400 p-2 rounded text-xl text-yellow-400 bg-slate-800"
             required
           />
 
@@ -39,7 +39,7 @@ export default function Home() {
           <textarea
             name="description"
             placeholder="e.g., Honing the powers of mind reading"
-            className="border border-yellow-400 p-2 rounded text-xl text-yellow-400"
+            className="border border-yellow-400 p-2 rounded text-xl text-yellow-400 bg-slate-800"
             required
           ></textarea>
 
@@ -49,7 +49,7 @@ export default function Home() {
           <input
             name="subject"
             placeholder="e.g., Telepathy"
-            className="border border-yellow-400 p-2 rounded text-xl text-yellow-400"
+            className="border border-yellow-400 p-2 rounded text-xl text-yellow-400 bg-slate-800"
             required
           />
 
@@ -60,7 +60,7 @@ export default function Home() {
             name="creditHours"
             type="number"
             placeholder="3"
-            className="border border-yellow-400 p-2 rounded text-xl text-yellow-400"
+            className="border border-yellow-400 p-2 rounded text-xl text-yellow-400 bg-slate-800"
             required
           />
 
