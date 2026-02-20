@@ -1,6 +1,6 @@
 "use client"; // Required for interactivity like forms and state
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, FormEvent } from "react";
 
 interface Instructor {
   id: number
@@ -41,7 +41,7 @@ export default function Home() {
   )
 
   //submit handler
-  const handleSubmit = async (e: SubmitEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault()
     setStatus("Saving course...")
 
