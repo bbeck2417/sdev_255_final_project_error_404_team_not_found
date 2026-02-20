@@ -6,3 +6,4 @@ export default defineConfig({
     url: process.env.DATABASE_URL,
   },
 });
+//For vercel variable vYAbxH4aA3k1geuc
