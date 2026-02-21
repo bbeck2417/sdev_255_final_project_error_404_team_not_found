@@ -37,6 +37,7 @@ export default function Home() {
         setStatus("Error loading courses")
       }
     }
+    fetchCourses()
   }
   )
 
@@ -53,7 +54,7 @@ export default function Home() {
       className: formData.get("nameOfClass"),
       description: formData.get("description"),
       subject: formData.get("subject"),
-      creditHours: formData.get("creditHours"),
+      creditHours: Number(formData.get("creditHours")),
     }
 
     const response = await fetch("/api/courses", {
