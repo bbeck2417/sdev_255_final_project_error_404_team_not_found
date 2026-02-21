@@ -1,18 +1,78 @@
 "use client"; // Required for interactivity like forms and state
 
-import { useState } from "react";
+import { useState, useEffect, FormEvent } from "react";
+
+interface Instructor {
+  id: number
+  name: string
+  role: "TEACHER" | "STUDENT"
+}
+
+interface Course {
+  courseId: number
+  className: string
+  description: string
+  subject: string
+  creditHours: number
+  instructorId: number
+  instructor: Instructor
+}
+
 
 export default function Home() {
   // You can use state to manage the courses once you fetch them
   const [status, setStatus] = useState("");
+  const [courses, setCourses] = useState<Course[]>([])
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setStatus("Saving course...");
+  //fetch courses
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const res = await fetch("/api/courses")
+        if (!res.ok) throw new Error("Failed to fetch courses")
+        const data: Course[] = await res.json()
+        setCourses(data)
+      } catch (err) {
+        console.error(err)
+        setStatus("Error loading courses")
+      }
+    }
+    fetchCourses()
+  }, [])
 
-  //   // Logic to call your API route would go here
-  //   // Example: const response = await fetch('/api/courses', { ... });
-  // };
+  //submit handler
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setStatus("Saving course...")
+
+    const form = e.currentTarget as HTMLFormElement
+    const formData = new FormData(form)
+
+    //gathering info from page
+    const courseData = {
+      className: formData.get("nameOfClass"),
+      description: formData.get("description"),
+      subject: formData.get("subject"),
+      creditHours: Number(formData.get("creditHours")),
+    }
+
+    const response = await fetch("/api/courses", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(courseData),
+    })
+
+    //checks for good send and resets form
+    if (response.ok) {
+      setStatus("Course added successfully!")
+      form.reset()
+    } else {
+      const errorData = await response.json()
+      setStatus(errorData.error || "Something went wrong")
+    }
+  }
 
   return (
     <main className="flex flex-col items-center justify-start min-h-screen p-4 pt-24 text-white font-wolverine">
@@ -22,7 +82,7 @@ export default function Home() {
 
       <h2 className="text-xl mb-4 text-yellow-400 pt-24">Add a Course</h2>
       <div className="w-full max-w-md">
-        <form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <label className="text-sm font-semibold text-yellow-400">
             Course Name:
           </label>
@@ -77,7 +137,23 @@ export default function Home() {
       <h2 className="text-xl mt-8 text-yellow-400">All Courses</h2>
       {/* You'll eventually map through your database results here */}
       <div id="courses" className="mt-4">
-        <p className="italic text-slate-400">No courses loaded yet.</p>
+        {courses.length === 0 ? (
+          <p className="italic text-slate-400">No courses loaded yet.</p>
+        ) : (
+          courses.map((course) => (
+            <div key={course.courseId} className="border p-4 rounded bg-slate-700">
+              <h3 className="font-bold text-yellow-400">{course.className}</h3>
+              <p>
+
+              </p>
+              <p>{course.description}</p>
+              <p>
+                <span className="font-semibold">Subject:</span> {course.subject} |{" "}
+                <span className="font-semibold">Credits:</span> {course.creditHours}
+              </p>
+            </div>
+          ))
+        )}
       </div>
     </main>
   );
