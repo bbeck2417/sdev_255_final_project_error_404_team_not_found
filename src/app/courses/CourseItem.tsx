@@ -26,7 +26,7 @@ type CourseItemProps = {
   course: Course & { instructor?: Instructor; enrollments: Enrollment[] };
   instructors: Instructor[];
   userRole: string;
-  userId: number; 
+  userId: number;
 };
 
 export default function CourseItem({
@@ -37,7 +37,6 @@ export default function CourseItem({
 }: CourseItemProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
-
 
   // Bind the actions with the specific course ID
   const editCourseWithId = editCourse.bind(null, course.courseId);
@@ -66,7 +65,58 @@ export default function CourseItem({
             className="..."
             required
           />
-          
+          <label className="text-sm font-semibold text-yellow-400">
+            Description:
+          </label>
+          <textarea
+            name="description" // Matches formData.get("description")
+            defaultValue={course.description}
+            className="border border-yellow-400 p-2 rounded text-white bg-slate-900"
+            required
+          />
+
+          <label className="text-sm font-semibold text-yellow-400">
+            Subject:
+          </label>
+          <input
+            name="subject" // Matches formData.get("subject")
+            defaultValue={course.subject}
+            className="border border-yellow-400 p-2 rounded text-white bg-slate-900"
+            required
+          />
+
+          <div className="flex gap-4">
+            <div className="flex flex-col flex-1">
+              <label className="text-sm font-semibold text-yellow-400">
+                Credits
+              </label>
+              <input
+                name="creditHours" // Matches formData.get("creditHours")
+                type="number"
+                defaultValue={course.creditHours}
+                className="border border-yellow-400 p-2 rounded text-white bg-slate-900"
+                required
+              />
+            </div>
+            <div className="flex flex-col flex-1">
+              <label className="text-sm font-semibold text-yellow-400">
+                Instructor
+              </label>
+              <select
+                name="instructorId" // Matches formData.get("instructorId")
+                defaultValue={course.instructorId}
+                className="border border-yellow-400 p-2 rounded text-white bg-slate-900"
+                required
+              >
+                {instructors.map((inst) => (
+                  <option key={inst.id} value={inst.id}>
+                    {inst.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
           <div className="flex justify-end gap-2 mt-4 border-t border-slate-600 pt-4">
             <button
               type="button"
