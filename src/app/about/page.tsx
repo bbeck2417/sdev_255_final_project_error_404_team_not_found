@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function About() {
   return (
     <>
-      <div className="font-wolverine flex h-screen flex-col items-center p-24 text-yellow-400">
+      <div className="font-science-gothic flex h-screen flex-col items-center p-24 text-yellow-400">
         <h1 className="text-xl pb-3">About</h1>
         <Image
           src="/xavierschool.png"

@@ -2,8 +2,7 @@
 
 @theme {
   /* This connects your Geist font variables to Tailwind utilities */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-science-gothic: var(--font-science-gothic), "Arial", sans-serif;
   --font-wolverine: var(--font-wolverine), "Georgia", serif;
 }
 

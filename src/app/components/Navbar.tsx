@@ -12,7 +12,7 @@ export default async function Navbar() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-black text-yellow-400 shadow-md flex flex-col items-center">
       {/* 1. Main Navbar Content */}
-      <div className="flex items-center justify-between p-4 w-full font-wolverine px-8">
+      <div className="flex items-center justify-between p-4 w-full font-science-gothic px-8">
         {/* Spacer: Keeps the center links perfectly centered by balancing the right side */}
         <div className="w-48"></div>
 

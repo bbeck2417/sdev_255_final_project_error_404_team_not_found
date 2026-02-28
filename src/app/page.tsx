@@ -35,7 +35,7 @@ export default async function Home() {
     });
 
     return (
-      <div className="flex flex-col items-center p-8 font-wolverine text-xl min-h-[calc(100vh-100px)]">
+      <div className="flex flex-col items-center p-8 font-science-gothic text-xl min-h-[calc(100vh-100px)]">
         <h1 className="text-4xl text-yellow-400 mb-8 tracking-widest uppercase">
           Instructor Terminal
         </h1>
@@ -113,7 +113,7 @@ export default async function Home() {
   });
 
   return (
-    <div className="flex flex-col items-center p-8 font-wolverine text-xl min-h-[calc(100vh-100px)]">
+    <div className="flex flex-col items-center p-8 font-science-gothic text-xl min-h-[calc(100vh-100px)]">
       <h1 className="text-4xl text-yellow-400 mb-8 tracking-widest uppercase">
         My Course Schedule
       </h1>

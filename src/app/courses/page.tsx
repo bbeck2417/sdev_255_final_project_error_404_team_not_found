@@ -32,8 +32,8 @@ export default async function Courses() {
   });
 
   return (
-    <main className="flex flex-col items-center justify-start min-h-screen p-4 pt-24 text-white font-wolverine">
-      <h1 className="text-2xl font-bold mb-6 text-yellow-400 font-wolverine text-center">
+    <main className="flex flex-col items-center justify-start min-h-screen p-4 pt-24 text-white font-scince-gothic">
+      <h1 className="text-2xl font-bold mb-6 text-yellow-400 font-science-gothic text-center">
         Course Management - Xavier&apos;s School for the Gifted
       </h1>
 

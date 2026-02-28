@@ -1,22 +1,18 @@
 //src/app/layout.tsx
-import { Geist, Geist_Mono } from "next/font/google";
+import { Science_Gothic } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "src/app/components/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const scienceGothic = Science_Gothic({
   subsets: ["latin"],
+  variable: "--font-science-gothic",
 });
+
 const wolverine = localFont({
   src: "./fonts/Wolverine.ttf",
   variable: "--font-wolverine",
   weight: "400",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
 });
 
 export const metadata = {
