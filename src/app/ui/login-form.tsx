@@ -41,6 +41,7 @@ export function LoginForm() {
           id="password"
           name="password"
           type="password"
+          placeholder="Enter your password"
           className="mt-1 block w-full border border-slate-600 bg-slate-900 text-white rounded-md p-3 focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400 font-sans"
         />
         {state?.errors?.password && (
