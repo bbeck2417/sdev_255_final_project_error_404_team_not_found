@@ -1,3 +1,4 @@
+//src/app/layout.tsx
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -31,7 +32,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${wolverine.variable} antialiased text-white bg-slate-900 bg-[linear-gradient(rgba(15,23,42,0.7),rgba(15,23,42,0.7)),url('/backgroundimage.jpg')] bg-cover bg-center bg-fixed`}
+        className={`${wolverine.variable} 
+        antialiased 
+        text-white 
+        bg-slate-900 
+        bg-[linear-gradient(rgba(15,23,42,0.7),rgba(15,23,42,0.7)),url('/backgroundimage.jpg')] 
+        bg-cover 
+        bg-center 
+        bg-fixed suppressHydrationWarning`}
       >
         <Navbar />
         {children}

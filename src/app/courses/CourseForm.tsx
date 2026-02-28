@@ -1,3 +1,4 @@
+// src/app/courses/CourseForm.tsx
 "use client";
 
 import { createCourse } from "./actions";

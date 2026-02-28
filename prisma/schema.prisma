@@ -1,53 +1,59 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
-generator client {
-  provider = "prisma-client-js"
-  // output   = "../src/app/generated/prisma/client"
-}
-
 datasource db {
   provider = "postgresql"
+  // Note: The 'url' is correctly omitted here because you are using prisma.config.ts
 }
 
+generator client {
+  provider        = "prisma-client-js"
+  
+}
+
+// 1. Keep the Role model if you need it for permissions/logic, 
+// but it no longer conflicts with the Enum name "UserRole"
+model Role {
+  id Int @id
+}
 
 model User {
-  id Int @id @default(autoincrement())
-  name String
-  role Role
+  id       Int      @id @default(autoincrement())
+  username String   @unique
+  name     String
+  password String
+  
+  // 2. FIXED: Changed "User Role" (which had a space and old name) 
+  // to "UserRole" (matching your enum at the bottom)
+  role     UserRole
 
-  coursesTaught Course[] @relation("TeacherCourses")
-  enrollments Enrollment[]
+  coursesTaught Course[]     @relation("TeacherCourses")
+  enrollments   Enrollment[]
 }
 
 model Course {
-  courseId Int @id @default(autoincrement())
-  className String
+  courseId    Int      @id @default(autoincrement())
+  className   String
   creditHours Int
   description String
-  subject String
+  subject     String
 
   instructorId Int
-  instructor User @relation("TeacherCourses", fields: [instructorId], references: [id])
+  instructor   User    @relation("TeacherCourses", fields: [instructorId], references: [id])
 
   enrollments Enrollment[]
 }
 
 model Enrollment {
-  id Int @id @default(autoincrement())
+  id        Int @id @default(autoincrement())
   studentId Int
-  courseId Int
+  courseId  Int
 
-  student User @relation(fields: [studentId], references: [id])
-  course Course @relation(fields: [courseId], references: [courseId])
+  student User   @relation(fields: [studentId], references: [id])
+  course  Course @relation(fields: [courseId], references: [courseId], onDelete: Cascade)
 
   @@unique([studentId, courseId])
 }
 
-enum Role {
+// 3. This enum name is now safe because it doesn't match "model Role"
+enum UserRole {
   STUDENT
   TEACHER
 }
