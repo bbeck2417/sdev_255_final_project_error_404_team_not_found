@@ -109,6 +109,7 @@ export async function enrollInCourse(courseId: number) {
       data: {
         studentId,
         courseId,
+        status: "IN_CART",
       },
     });
     revalidatePath("/");
@@ -116,6 +117,22 @@ export async function enrollInCourse(courseId: number) {
   } catch (error) {
     return { error: "You are already enrolled in this class." };
   }
+}
+export async function confirmEnrollment() {
+  const studentId = await verifyStudentClearance();
+
+  await prisma.enrollment.updateMany({
+    where: {
+      studentId,
+      status: "IN_CART",
+    },
+    data: {
+      status: "CONFIRMED",
+    },
+  });
+
+  revalidatePath("/");
+  revalidatePath("/courses");
 }
 
 export async function dropCourse(courseId: number) {
