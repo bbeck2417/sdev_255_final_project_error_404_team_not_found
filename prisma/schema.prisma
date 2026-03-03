@@ -41,10 +41,16 @@ model Course {
   enrollments Enrollment[]
 }
 
+enum EnrollmentStatus {
+  IN_CART
+  CONFIRMED
+}
+
 model Enrollment {
   id        Int @id @default(autoincrement())
   studentId Int
   courseId  Int
+  status    EnrollmentStatus @default(IN_CART)
 
   student User   @relation(fields: [studentId], references: [id])
   course  Course @relation(fields: [courseId], references: [courseId], onDelete: Cascade)

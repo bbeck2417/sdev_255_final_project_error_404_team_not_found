@@ -101,8 +101,9 @@ export default async function Home() {
   // STUDENT VIEW
   // ==========================================
   // Fetch enrollments for this student, including the course and instructor details
+
   const enrollments = await prisma.enrollment.findMany({
-    where: { studentId: userId },
+    where: { studentId: userId, status: "CONFIRMED" },
     include: {
       course: {
         include: {
