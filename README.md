@@ -1,68 +1,45 @@
-# Xavier's School for the Gifted - Course Management
+# Error 404: Course Management Platform 🎓
+A robust, full-stack course management system built for the SDEV 255 final project. This platform enables seamless course enrollment, student tracking, and administrative management for the "Xavier’s School for Gifted Youngsters" platform.
 
-This is a [Next.js](https://nextjs.org) project built as the final project for SDEV 255. It features a course registration and management dashboard for the world's premier school for mutants, utilizing **Prisma ORM** and **Supabase (PostgreSQL)**.
+## 🛠️ Tech Stack
+This project leverages a modern, typesafe stack designed for scalability and data integrity:
 
-## 🚀 Deployment to Vercel
+* **Framework**: [Next.js](https://nextjs.org/) (App Router) for server-side rendering and optimized routing.
+* **Styling**: [Tailwind CSS](https://tailwindcss.com/) for responsive, utility-first design.
+* **Database & ORM**: [Prisma](https://www.prisma.io/) with PostgreSQL, utilizing complex schemas for Users, Courses, and Enrollments.
+* **Authentication**: Custom authentication flow with secure session management.
+* **Language**: [TypeScript](https://www.typescriptlang.org/) for end-to-end type safety.
 
-This project is optimized for Vercel using the Next.js App Router and TypeScript.
+## 📸 Project Showcase
 
-1. **Automatic Build Command**: The project is configured to run `npx prisma generate && next build`. This ensures that the Prisma Client is generated on the Vercel server before the application compiles.
-2. **Root Routing**: Do **not** use `basePath` or `assetPrefix` in `next.config.mjs` when deploying to Vercel. Vercel serves the app from the root directory by default. Using these will cause **307 Redirect loops** and **404 errors**.
-3. **TypeScript Strictness**: The build process runs a strict TypeScript check. Ensure all props (like `children` in `layout.tsx`) are properly typed with `React.ReactNode`.
+### 1. Secure Authentication
+The platform features a dedicated login and signup portal to manage different user roles securely.
+![Login Page](./public/loginpage.png)
 
-## 🗄️ Database Configuration (Supabase + Prisma)
+### 2. Student Enrollment Workflow
+Students can browse available courses and begin the enrollment process through an intuitive interface.
+![Student Enrollment](./public/studentenroll.jpg)
 
-This project requires a connection to a Supabase PostgreSQL instance.
+### 3. Shopping Cart System
+A specialized `ShoppingCart` component manages course selections, allowing students to review their academic choices before finalizing enrollment.
+![Enrollment Cart](./public/cart.png)
 
-### 1. The Connection String & IPv4 Session Pooling
+### 4. Enrollment Confirmation
+Once a student is successfully added to a course, the system updates the enrollment status in the database.
+![Student Enrolled](./public/studentenrolled.png)
 
-When deploying with an IPv4 connection, you **must use the Supabase Session Pooler**. This prevents "connection exhaustion," which occurs when multiple serverless functions attempt to open direct database connections simultaneously.
+### 5. Administrative Controls
+Faculty and administrators have access to specialized forms to add or update course information dynamically.
+![Add Course Interface](./public/profaddcourse.jpg)
 
-- **Mode**: Set the Supabase Connection Pooler to **Session Mode**.
-- **Port**: Use port `5432` (or the specific pooler port provided in your Supabase dashboard).
-- **Format**:
-  `postgresql://postgres.[USERNAME]:[PASSWORD]@[POOLER-HOST]:5432/postgres`
+## 🚀 Key Features
+* **Prisma Migrations**: Robust database versioning including cascade deletes and enrollment status tracking.
+* **Typesafe Actions**: Server actions for handling authentication and course data manipulation securely.
+* **Global Styling**: A centralized design system using `globals.css` and the custom "Wolverine" font for a unique aesthetic.
 
-> **⚠️ Note for IPv4 Users:** If you are not in an IPv6-capable environment, direct connections to the database may time out or fail. Always use the **Session Pooler** connection string found in your Supabase Project Settings.
-
-### 2. Environment Variables
-
-1. **Local**: Add the string to your `.env` file as `DATABASE_URL`.
-2. **Vercel**: Add `DATABASE_URL` to your **Environment Variables** in the Vercel dashboard.
-
-## 🛠️ Development Setup
-
-First, install the dependencies:
-
-```bash
-npm install
-```
-
-Generate the Prisma client to the custom project path:
-
-```bash
-npx prisma generate
-```
-
-Run the development server:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## 🏗️ Project Structure
-
-- `src/app/page.tsx`: The main dashboard UI and "Add Course" form.
-- `src/app/layout.tsx`: The root layout, font configurations, and metadata.
-- `src/lib/prisma.ts`: The singleton Prisma client instance to prevent multiple connections.
-- `src/app/generated/prisma/client`: The custom output directory for the generated Prisma Client.
-- `prisma/schema.prisma`: The database schema definition.
-
-## 🎓 About the Project
-
-Developed by the **Error 404: Team Not Found** crew as part of the Ivy Tech Full Stack Technical Certificate program.
-
-- **Lead Developer**: William "Billy" Beck
-- **Project Goal**: Full-stack integration of Next.js, TypeScript, and Prisma with automated deployment.
+## ⚙️ Development Setup
+1. Clone the repository.
+2. Install dependencies: `npm install`.
+3. Set up your `.env` file with database credentials.
+4. Run Prisma migrations: `npx prisma migrate dev`.
+5. Start the development server: `npm run dev`.
