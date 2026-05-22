@@ -24,7 +24,7 @@ export default function CartSidebar({ cartItems }: { cartItems: CartItem[] }) {
       {/* Floating Cart Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed top-28 right-6 bg-yellow-400 text-black p-4 rounded-full shadow-2xl z-50 font-bold hover:scale-105 transition"
+        className="fixed bottom-4 right-4 lg:bottom-auto lg:top-28 lg:right-6 bg-yellow-400 text-black px-4 py-3 rounded-full shadow-2xl z-50 font-bold hover:scale-105 transition"
       >
         🛒 Cart ({cartItems.length})
       </button>
